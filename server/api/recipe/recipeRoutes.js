@@ -31,15 +31,8 @@ var updateId = function(req, res, next) {
 }
 
 recipeRouter.route('/')
-    .get(function (req, res) {
+    .get(function (req, res, next) {
         res.json(RecipeList);
     })
   
-recipeRouter.use(function(err, req, res, next) {
-    if (err) {
-        console.log(err.message);
-        res.status(500).send(err)
-    }
-})
-
 module.exports = recipeRouter;
