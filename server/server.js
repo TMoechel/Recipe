@@ -1,18 +1,15 @@
 var express = require('express');
-var app = express();
 var api = require('./api/api');
-var err = require('./middleware/error');
+var config = require('./config/config');
+require('mongoose').connect(config.db.url);
+
+var app = express();
 
 // setup the app middlware
 require('./middleware/appMiddleware')(app);
 
-
 // setup the api
 app.use('/api', api);
-app.use(err);
-
-
-// set up global error handling
 
 // export the app for testing
 module.exports = app;
